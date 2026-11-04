@@ -1473,10 +1473,12 @@ def show_owner_dashboard():
 if not st.session_state.get("owner_logged_in", False):
     st.sidebar.markdown("<div style='font:400 1.7rem Georgia,serif; text-align:center; padding:.6rem 0 1rem;'>The Wigology.</div>", unsafe_allow_html=True)
 
+import os
+
 try:
-    owner_email = st.secrets["owner"]["email"]
-    owner_password_hash = st.secrets["owner"]["password_hash"]
-except (KeyError, FileNotFoundError):
+    owner_email = os.getenv("OWNER_EMAIL") or st.secrets["owner"]["email"]
+    owner_password_hash = os.getenv("OWNER_PASSWORD_HASH") or st.secrets["owner"]["password_hash"]
+except Exception:
     owner_email = None
     owner_password_hash = None
 
