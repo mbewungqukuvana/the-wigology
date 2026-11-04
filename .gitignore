@@ -1,0 +1,21 @@
+# Private credentials
+.streamlit/secrets.toml
+**/.streamlit/secrets.toml
+.env
+.env.*
+!.env.example
+
+# Python files
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local files
+.DS_Store
+*.db
+*.sqlite3
+
+# Private keys
+*.pem
+*.key
