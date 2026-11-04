@@ -1,0 +1,22 @@
+
+name: Keep The Wigology Awake
+
+on:
+  schedule:
+    - cron: '3-59/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  keep-awake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Ping The Wigology
+        run: |
+          curl --fail --location --silent --show-error \
+            --max-time 120 \
+            https://thewigology.onrender.com/_stcore/health
