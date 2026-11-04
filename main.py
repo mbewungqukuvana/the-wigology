@@ -317,30 +317,9 @@ html, body,
 
 
 
-.wigology-intro-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    background: #f5f1ec;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    animation: wigology-intro-hide 2.35s ease-in-out both;
-}
-.wigology-intro-inner { text-align: center; padding: 1.5rem; animation: wigology-logo-in 1.25s ease-out both; }
-.wigology-intro-name { font-family: Georgia, serif; font-weight: 400; font-size: clamp(2.5rem, 7vw, 5rem); color: #191714; letter-spacing: -0.04em; }
-.wigology-intro-tagline { font-family: 'Manrope', sans-serif; font-size: clamp(0.58rem, 1.3vw, 0.82rem); letter-spacing: 0.23em; margin-top: 1.1rem; color: #645e56; }
-@keyframes wigology-logo-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes wigology-intro-hide { 0%, 63% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
-
 .wigology-home-copy { text-align: center; margin-bottom: 1.2rem; }
 .wigology-home-copy h1 { margin: 0 0 0.8rem !important; }
 .wigology-home-copy p { font-size: 0.78rem; letter-spacing: 0.19em; margin: 0; }
-@media (prefers-reduced-motion: reduce) {
-    .wigology-intro-screen { animation-duration: 0.01ms; }
-    .wigology-intro-inner { animation: none; }
-}
 
 
 
@@ -491,9 +470,6 @@ st.markdown("""
   color: var(--wig-chocolate) !important;
   border-color: var(--wig-line) !important;
 }
-.wigology-intro-screen { background: var(--wig-ivory) !important; }
-.wigology-intro-name { color: var(--wig-chocolate) !important; }
-.wigology-intro-tagline { color: var(--wig-olive) !important; }
 .wigology-home-copy h1 { color: var(--wig-chocolate) !important; }
 .wigology-home-copy p { color: var(--wig-olive) !important; }
 
@@ -1319,14 +1295,6 @@ def show_individual_hair_shop():
 def show_homepage():
 
 
-    st.markdown("""
-    <div class="wigology-intro-screen" aria-hidden="true">
-      <div class="wigology-intro-inner">
-        <div class="wigology-intro-name">The Wigology.</div>
-        <div class="wigology-intro-tagline">THE ART &amp; SCIENCE OF HAIR</div>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
 
 
     st.markdown('<div class="wigology-hero-start"></div>',
@@ -1573,7 +1541,7 @@ st.markdown("""
 [data-testid="stMain"] label,[data-testid="stMain"] [data-testid="stCaptionContainer"] {
  color:#38251F !important;
 }
-.wigology-home-copy p,.wigology-intro-tagline,
+.wigology-home-copy p,
 .wig-science-eyebrow,.wig-science-story .eyebrow,
 .wig-profile-head .eyebrow,.wigology-science-label {
  color:#755C4C !important;
@@ -1688,7 +1656,6 @@ body [data-baseweb="popover"] [aria-selected="true"] {
 }
 .wig-science-story {background:#F7F3EB !important;}
 .wig-science-links a {color:#624333 !important;}
-.wigology-intro-screen {background:#F7F3EB !important;}
 
 [data-testid="stMain"]:has(.wigology-home-copy) [data-testid="stImage"] img {
  mix-blend-mode:multiply;
