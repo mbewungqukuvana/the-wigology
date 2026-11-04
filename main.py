@@ -4,19 +4,12 @@ import bcrypt
 import hmac
 
 
-# ==========================================
-# PAGE SETTINGS
-# ==========================================
-
 st.set_page_config(
     page_title="The Wigology",
     page_icon="✨",
     layout="wide"
 )
 
-# ==========================================
-# THE WIGOLOGY — FONTS
-# ==========================================
 
 st.markdown("""
 <style>
@@ -25,7 +18,7 @@ st.markdown("""
 
 
 
-/* THE WIGOLOGY — warm, light owner navigation */
+
 [data-testid="stSidebar"], [data-testid="stSidebar"] > div,
 [data-testid="stSidebarContent"], [data-testid="stSidebarUserContent"] {
  background:#FFFFFF!important; color:#26211D!important;
@@ -55,7 +48,7 @@ st.markdown("""
 .wigology-dashboard-welcome {animation:wigology-dashboard-reveal 1.65s ease-out both;}
 
 
-/* Owner navigation and login: white like the customer storefront */
+
 [data-testid="stSidebar"],
 [data-testid="stSidebar"] > div,
 [data-testid="stSidebarContent"],
@@ -75,7 +68,7 @@ st.markdown("""
 [data-testid="stSidebar"] [data-testid="stSelectbox"] svg { fill: #201B18 !important; }
 [data-testid="stSidebar"] [data-testid="stForm"] { background: #FFFFFF !important; border-color: #E4DAD0 !important; }
 
-/* OWNER SIDEBAR + PORTAL DROPDOWN — final light control overrides */
+
 [data-testid="stSidebar"] [data-testid="stTextInput"] div[data-baseweb="input"],
 [data-testid="stSidebar"] [data-testid="stTextInput"] div[data-baseweb="input"] > div,
 [data-testid="stSidebar"] [data-testid="stTextInput"] input,
@@ -90,7 +83,7 @@ st.markdown("""
  color:#201B18 !important; -webkit-text-fill-color:#201B18 !important;
 }
 [data-testid="stSidebar"] [data-testid="stSelectbox"] svg { fill:#7C6A59 !important; color:#7C6A59 !important; }
-/* The dropdown menu is rendered in a portal outside the sidebar. */
+
 body [data-baseweb="popover"] [data-baseweb="menu"],
 body [data-baseweb="popover"] [role="listbox"],
 body [data-baseweb="popover"] [role="option"],
@@ -112,18 +105,18 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
  background:#F3EEE8 !important; color:#201B18 !important;
 }
 
-/* THE WIGOLOGY — HOMEPAGE LAYOUT */
 
-/* Give the first section breathing room */
+
+
 [data-testid="stMainBlockContainer"] {
     padding-top: 2rem !important;
     max-width: 1250px;
 }
 
 
-/* THE WIGOLOGY — WHITE LUXURY THEME */
 
-/* Main website background */
+
+
 [data-testid="stApp"],
 [data-testid="stMain"],
 [data-testid="stMainBlockContainer"] {
@@ -131,7 +124,7 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
     color: #111111 !important;
 }
 
-/* All main text and headings */
+
 [data-testid="stMain"] h1,
 [data-testid="stMain"] h2,
 [data-testid="stMain"] h3,
@@ -140,13 +133,13 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
     color: #111111 !important;
 }
 
-/* Collection heading and description */
+
 .wigology-collection-heading h2,
 .wigology-collection-heading p {
     color: #111111 !important;
 }
 
-/* Buttons: white background, black borders */
+
 [data-testid="stMain"] .stButton button {
     background-color: #FFFFFF !important;
     color: #111111 !important;
@@ -154,24 +147,24 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
     border-radius: 0 !important;
 }
 
-/* Buttons turn black on hover */
+
 [data-testid="stMain"] .stButton button:hover {
     background-color: #111111 !important;
     color: #FFFFFF !important;
     border-color: #111111 !important;
 }
 
-/* Push the hero content down */
+
 .wigology-hero-start {
     height: 12vh;
 }
 
-/* Space before collection section */
+
 .wigology-section-space {
     height: 20vh;
 }
 
-/* Centre collection heading and description */
+
 .wigology-collection-heading {
     text-align: center;
     margin-bottom: 3rem;
@@ -190,13 +183,13 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
     line-height: 1.7;
 }
 
-/* Main heading */
+
 [data-testid="stMain"] h1 {
     font-size: clamp(2.5rem, 4vw, 4rem) !important;
     line-height: 1.2 !important;
 }
 
-/* Buttons */
+
 [data-testid="stMain"] .stButton button {
     min-height: 3.4rem;
     border-radius: 0 !important;
@@ -204,7 +197,7 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
     text-transform: uppercase;
 }
 
-/* Smaller screen adjustments */
+
 @media (max-width: 768px) {
     .wigology-hero-start {
         height: 5vh;
@@ -215,39 +208,39 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
     }
 }
 
-/* MOVE WEBSITE CONTENT HIGHER */
+
 [data-testid="stMainBlockContainer"] {
     padding-top: 1.5rem !important;
 }
 
-/* SPACE BELOW THE MAIN TITLE */
+
 [data-testid="stMain"] h1 {
     margin-bottom: 0.8rem !important;
 }
 
 
-/* THE WIGOLOGY — HOMEPAGE STYLING */
 
-/* Move content closer to the top */
+
+
 [data-testid="stMainBlockContainer"] {
     padding-top: 2rem !important;
     max-width: 1250px;
 }
 
-/* Elegant heading */
+
 [data-testid="stMain"] h1 {
     font-size: clamp(2.8rem, 5vw, 5rem) !important;
     line-height: 1.15 !important;
     letter-spacing: 0.02em;
 }
 
-/* Refined section headings */
+
 [data-testid="stMain"] h2 {
     font-size: 2.5rem !important;
     font-weight: 400 !important;
 }
 
-/* Luxury buttons */
+
 [data-testid="stMain"] .stButton button {
     min-height: 3.4rem;
     border-radius: 0 !important;
@@ -255,13 +248,13 @@ body [data-baseweb="popover"] div { color:#201B18 !important; }
     text-transform: uppercase;
 }
 
-/* Photograph presentation */
+
 [data-testid="stMain"] [data-testid="stImage"] img {
     display: block;
     width: 100%;
 }
 
-/* BODY FONT — MANROPE */
+
 html, body,
 [data-testid="stApp"],
 [data-testid="stApp"] p,
@@ -273,7 +266,7 @@ html, body,
     font-family: 'Tenor Sans', sans-serif !important;
 }
 
-/* HEADING FONT — BODONI MODA */
+
 [data-testid="stApp"] h1,
 [data-testid="stApp"] h2,
 [data-testid="stApp"] h3 {
@@ -282,23 +275,23 @@ html, body,
     letter-spacing: -0.5px;
 }
 
-/* MAIN BRAND HEADING */
+
 [data-testid="stMain"] h1 {
     font-size: 3.5rem !important;
 }
 
-/* BODY TEXT SPACING */
+
 [data-testid="stMain"] p {
     line-height: 1.7;
 }
 
-/* BUTTON TEXT */
+
 [data-testid="stApp"] button {
     font-weight: 500;
 }
 
 
-/* Refined, light selection controls on the shopping page */
+
 [data-testid="stMain"] [data-baseweb="select"] > div {
     background: #ffffff !important;
     color: #111111 !important;
@@ -323,7 +316,7 @@ html, body,
 }
 
 
-/* THE WIGOLOGY — OPENING REVEAL (CSS only) */
+
 .wigology-intro-screen {
     position: fixed;
     inset: 0;
@@ -340,7 +333,7 @@ html, body,
 .wigology-intro-tagline { font-family: 'Manrope', sans-serif; font-size: clamp(0.58rem, 1.3vw, 0.82rem); letter-spacing: 0.23em; margin-top: 1.1rem; color: #645e56; }
 @keyframes wigology-logo-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes wigology-intro-hide { 0%, 63% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
-/* Centre the brand copy without changing other pages */
+
 .wigology-home-copy { text-align: center; margin-bottom: 1.2rem; }
 .wigology-home-copy h1 { margin: 0 0 0.8rem !important; }
 .wigology-home-copy p { font-size: 0.78rem; letter-spacing: 0.19em; margin: 0; }
@@ -350,7 +343,7 @@ html, body,
 }
 
 
-/* THE WIGOLOGY — LIGHT OWNER NAVIGATION + PORTAL MENU */
+
 [data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"],
 [data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"] > div,
 [data-testid="stSidebar"] [data-testid="stSelectbox"] input,
@@ -374,7 +367,7 @@ html, body,
 [data-testid="stSidebar"] [data-testid="stSelectbox"] div[role="combobox"] {
   color:#25201C !important; -webkit-text-fill-color:#25201C !important;
 }
-/* Dropdown list is outside the sidebar in a BaseWeb portal */
+
 div[data-baseweb="popover"], div[data-baseweb="popover"] [data-baseweb="menu"],
 div[data-baseweb="popover"] [role="listbox"],
 div[data-baseweb="popover"] [role="option"],
@@ -395,8 +388,6 @@ div[data-baseweb="popover"] [aria-selected="true"] {
 """, unsafe_allow_html=True)
 
 
-
-# Selection tile styling for the wig builder (the shop page has its own matching rules).
 st.markdown("""
 <style>
 [class*="st-key-wig_tile_"] button {
@@ -422,10 +413,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ==========================================
-# THE WIGOLOGY — CREAM / WALNUT / DEEP OLIVE
-# Visual changes only; existing application logic is preserved.
-# ==========================================
+
 st.markdown("""
 <style>
 :root {
@@ -438,7 +426,7 @@ st.markdown("""
   --wig-black: #201B18;
   --wig-line: #D8CCBD;
 }
-/* Cream is the dominant canvas. Keep the original airy composition. */
+
 [data-testid="stApp"], [data-testid="stMain"],
 [data-testid="stMainBlockContainer"] {
   background: var(--wig-ivory) !important;
@@ -449,7 +437,7 @@ st.markdown("""
 [data-testid="stMain"] [data-testid="stCaptionContainer"] {
   color: var(--wig-chocolate) !important;
 }
-/* Brown actions; white lettering stays legible even when selected/hovered. */
+
 [data-testid="stMain"] .stButton button {
   background: transparent !important;
   color: var(--wig-chocolate) !important;
@@ -471,7 +459,7 @@ st.markdown("""
   color: #FFF9F0 !important;
   -webkit-text-fill-color: #FFF9F0 !important;
 }
-/* Homepage: first CTA is walnut rather than green. */
+
 [data-testid="stMain"] [class*="st-key-homepage_build"] button {
   background: var(--wig-chocolate) !important;
   color: #FFF9F0 !important;
@@ -485,7 +473,7 @@ st.markdown("""
   background: var(--wig-walnut) !important;
   border-color: var(--wig-walnut) !important;
 }
-/* Green appears in editorial accents, active selections, and fine details. */
+
 [class*="st-key-wig_tile_"] button[kind="primary"],
 [class*="st-key-shop_tile_"] button[kind="primary"] {
   background: var(--wig-olive) !important;
@@ -508,7 +496,7 @@ st.markdown("""
 .wigology-intro-tagline { color: var(--wig-olive) !important; }
 .wigology-home-copy h1 { color: var(--wig-chocolate) !important; }
 .wigology-home-copy p { color: var(--wig-olive) !important; }
-/* Tiny olive underline: refined rather than a big green shape. */
+
 .wigology-home-copy::after {
   content: "";
   display: block;
@@ -518,7 +506,7 @@ st.markdown("""
   background: var(--wig-olive);
   opacity: .8;
 }
-/* Let the white background of the existing homepage PNG blend with cream. */
+
 [data-testid="stMain"]:has(.wigology-home-copy) [data-testid="stImage"] img {
   mix-blend-mode: multiply;
 }
@@ -559,13 +547,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ==========================================
-# HAIR SCIENCE INFORMATION
-# ==========================================
-
-# Draft descriptions for the selected collections.
-# Verify origin, strand characteristics and colouring
-# suitability with the supplier before publishing.
 
 HAIR = {
     'Indian': {
@@ -611,10 +592,6 @@ hair_information = {
 }
 
 
-# ==========================================
-# AVAILABLE HAIR OPTIONS
-# ==========================================
-
 hair_origins = ["Indian", "Filipino"]
 
 hair_textures = ["Straight", "Wavy", "Curly"]
@@ -622,11 +599,6 @@ hair_textures = ["Straight", "Wavy", "Curly"]
 hair_lengths = list(range(8, 27, 2))
 
 closure_sizes = ["6x6", "7x7", "9x6"]
-
-
-# ==========================================
-# THE HAIR SCIENCE
-# ==========================================
 
 
 from pathlib import Path
@@ -657,7 +629,7 @@ def show_wig_angle_viewer(name):
     if not all(path.is_file() for path in paths):
         return False
     images = ["data:image/jpeg;base64," + base64.b64encode(path.read_bytes()).decode("ascii") for path in paths]
-    # Embed the images locally: no external hosting, no additional Python package.
+
     html = r'''<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       *{box-sizing:border-box}body{margin:0;background:#fff;color:#302820;font-family:Arial,sans-serif}
@@ -679,8 +651,6 @@ def show_wig_angle_viewer(name):
       const photos=__IMAGES__,labels=['FRONT','SIDE','BACK'];
       const viewer=document.getElementById('viewer'),frames=document.getElementById('frames'),controls=document.getElementById('controls');
       const imgs=photos.map((src,i)=>{const el=document.createElement('img');el.src=src;el.alt=labels[i].toLowerCase()+' view';el.className='frame';el.draggable=false;frames.appendChild(el);return el});
-      // We have three photographs, not a 3D mesh. Blend their views in a continuous loop.
-      // Front -> Side -> Back -> Side -> Front avoids an abrupt back-to-front jump.
       const sequence=[0,1,2,1];
       const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let phase=0,playing=!prefersReduced,lastTime=null,dragging=false,moved=false,lastX=0,pointer=null;
@@ -688,7 +658,6 @@ def show_wig_angle_viewer(name):
       const playButton=document.createElement('button');playButton.type='button';playButton.addEventListener('click',()=>{playing=!playing;sync()});controls.appendChild(playButton);
       function sync(){playButton.textContent=playing?'PAUSE':'PLAY';playButton.setAttribute('aria-pressed',String(playing));viewer.setAttribute('aria-pressed',String(!playing));viewer.setAttribute('aria-label',playing?'Pause rotating wig views':'Play rotating wig views')}
       function paint(){const n=sequence.length;const p=((phase%n)+n)%n;const j=Math.floor(p),t=p-j;
-        // Smoothstep gives a gentle, rounded visual transition at each photographic angle.
         const blend=t*t*(3-2*t),first=sequence[j],second=sequence[(j+1)%n];
         imgs.forEach((img,i)=>{img.style.opacity=(first===second&&i===first?1:i===first?1-blend:i===second?blend:0).toFixed(4)});
         buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===(blend<.5?first:second))));
@@ -709,7 +678,7 @@ def show_wig_angle_viewer(name):
 
 
 st.markdown("""<style>
-/* Hair intelligence and research library: inherit original warm luxury aesthetic */
+
 .wig-profile-head {text-align:center;padding:2.2rem 1rem 1.3rem;}
 .wig-profile-head .eyebrow,.wig-research-eyebrow {font-family:'Manrope',sans-serif;letter-spacing:.2em;font-size:.7rem;color:#76685b;}
 .wig-profile-head h2 {font-family:'Bodoni Moda',Georgia,serif;margin:.8rem 0;}
@@ -747,8 +716,8 @@ def show_hair_profile(origin, texture):
                             unsafe_allow_html=True)
     with info_col:
         st.markdown("#### Your Hair Profile")
-        # Product-specific descriptions, rather than generic explanations of hair texture.
-        # Review against the actual supplier bundles before publishing.
+
+
         profile_intro = {
             ("Indian", "Wavy"): (
                 "Our Indian Wavy collection features naturally flowing waves, visible body "
@@ -810,8 +779,7 @@ def show_hair_profile(origin, texture):
     st.markdown("#### How This Hair Behaves")
     st.write(behaviour[(origin, texture)])
 
-# Editorial, client-focused hair education. Research links are further reading,
-# not certifications of any particular supplier or product.
+
 RESEARCH = [
     {
         "title": "Raw vs Virgin Hair",
@@ -866,7 +834,7 @@ RESEARCH = [
 
 
 def show_science_library():
-    # Load the real pattern from the images folder next to this main.py.
+
     from pathlib import Path
     import base64
     pattern_file = Path(__file__).resolve().parent / "images" / "burgundy_pattern.jpg"
@@ -876,7 +844,7 @@ def show_science_library():
         st.warning("Science background image missing: place burgundy_pattern.jpg inside the images folder beside main.py.")
         pattern_url = ""
 
-    # A calm editorial reading experience: no divider rules or crowded cards.
+
     st.markdown("""
     <style>
     .wig-science-hero {background:#F3EEE8;text-align:center;padding:clamp(3rem,7vw,6rem) 1.5rem;margin:.8rem 0 3.5rem;}
@@ -896,8 +864,7 @@ def show_science_library():
     .wig-science-links a {font-family:'Manrope',sans-serif;color:#6D5A4C!important;font-size:.75rem;letter-spacing:.045em;text-decoration:underline;text-underline-offset:5px;}
     @media(max-width:768px){.wig-science-hero{margin-bottom:2rem}.wig-science-story{margin-bottom:1rem}.wig-science-story .question{margin:1.8rem auto 2rem}}
 
-    /* Science page only: wallpaper covers the ENTIRE Streamlit page,
-       including the space ABOVE the green arch and Back to Home. */
+
     [data-testid="stApp"]:has(.wig-science-pattern-stage),
     [data-testid="stMain"]:has(.wig-science-pattern-stage),
     [data-testid="stMainBlockContainer"]:has(.wig-science-pattern-stage) {
@@ -907,7 +874,7 @@ def show_science_library():
         background-position:center top !important;
         background-size:clamp(560px, 76vw, 1080px) auto !important;
     }
-    /* Keep the Back to Home button readable against the patterned canvas. */
+
     [data-testid="stMain"]:has(.wig-science-pattern-stage) .stButton button {
         background:#FFF9F0 !important;
         color:#39251F !important;
@@ -917,7 +884,7 @@ def show_science_library():
         background:#39251F !important;
         color:#FFF9F0 !important;
     }
-    /* Reading section stays calm and ivory for comfortable long-form text. */
+
     [data-testid="stMain"]:has(.wig-science-pattern-stage) .wig-science-story {
         background:#F8F4ED !important;
     }
@@ -925,9 +892,7 @@ def show_science_library():
         background:#EFE6DA !important;
     }
 
-    /* THE WIGOLOGY — PATTERN BEHIND THE GREEN SEMICIRCLE
-       The outer container carries burgundy wallpaper ONLY in the hero region.
-       The arch itself remains solid dark olive, and the reading area stays ivory. */
+
     .wig-science-pattern-stage {
         background:transparent !important;
         padding:clamp(105px,10vw,160px) 0 0;
@@ -981,8 +946,7 @@ def show_science_library():
     </div>
     """.replace("__WIGOLOGY_PATTERN_URL__", pattern_url), unsafe_allow_html=True)
 
-    # Use one restrained reading column. Alternate white and warm ivory to
-    # create the magazine-like rhythm without adding distracting borders.
+
     _, centre, _ = st.columns([.5, 3.5, .5], gap="small")
     with centre:
         for index, item in enumerate(RESEARCH):
@@ -1012,12 +976,8 @@ def show_hair_science(origin, texture):
     show_hair_profile(origin, texture)
 
 
-# ==========================================
-# BUILD YOUR WIG
-# ==========================================
-
 def show_wig_builder():
-    # Customer wig configurator; supplier quotes come from the owner Pricing Studio.
+
     from pricing_studio import (
         INDIAN_BUNDLES, FILIPINO_SAMPLE_BUNDLES,
         INDIAN_CLOSURES, FILIPINO_CLOSURES,
@@ -1102,8 +1062,7 @@ def show_wig_builder():
             bundle_prices = FILIPINO_SAMPLE_BUNDLES
             closure_prices = FILIPINO_CLOSURES
 
-        # The customer-facing builder uses the same rectangular selection tiles
-        # throughout. Each click changes session state and reruns the app.
+
         def number_tiles(caption, options, state_key, tile_prefix, default, columns=5):
             st.markdown(f'<div class="wig-builder-label">{escape(caption)}</div>',
                         unsafe_allow_html=True)
@@ -1155,14 +1114,14 @@ def show_wig_builder():
         st.markdown("**Bundles:** " + ", ".join(f'{length}″' for length in chosen))
         st.markdown(f"**Closure:** {closure_size} · {closure_length}″")
 
-        # Indian Curly is customisable, but no unverified Wavy price is reused.
+
         if curly_price_on_request:
             st.markdown('<div class="wig-builder-summary"><div>ESTIMATED WIG PRICE</div>'
                         '<div class="price">Price on request</div></div>', unsafe_allow_html=True)
             st.caption("Indian Curly supplier pricing must be confirmed before a quotation can be provided.")
             return
 
-        # A price is only shown when the supplier has a quote for every component.
+
         closure_quote = closure_prices[closure_length].get(closure_size.replace("x", "×"))
         if closure_quote is None:
             st.markdown('<div class="wig-builder-summary"><div>ESTIMATED WIG PRICE</div>'
@@ -1170,7 +1129,7 @@ def show_wig_builder():
             st.caption("This closure size and length needs a confirmed supplier quote before we can calculate a price.")
             return
 
-        # Defaults match the owner's Pricing Studio. These are estimates, not live prices.
+
         supplier_usd = sum(bundle_prices[length] for length in chosen) + float(closure_quote)
         exchange_rate = 18.00
         shipping_usd = 65.00
@@ -1190,11 +1149,6 @@ def show_wig_builder():
                    "Final pricing is subject to confirmation; no payment is collected here.")
         if origin == "Filipino":
             st.caption("Filipino supplier quotes are samples; confirm the selected texture and current availability.")
-
-
-# ==========================================
-# SHOP BUNDLES & CLOSURES
-# ==========================================
 
 
 def show_individual_hair_shop():
@@ -1223,7 +1177,7 @@ def show_individual_hair_shop():
         font-size: .72rem; margin-top: 1.4rem; color: #6A6056;
     }
     .wigology-science-divider {border-top:1px solid #E5DFD8; margin:1.4rem 0;}
-    /* Style only the four selection buttons, leaving other pages untouched. */
+
     [class*="st-key-shop_tile_"] button {
         border: 1px solid #BEB5AB !important;
         background: #FFFFFF !important;
@@ -1362,16 +1316,9 @@ def show_individual_hair_shop():
                 st.caption("Select a closure size to complete your selection.")
 
 
-
-
-# ==========================================
-# THE WIGOLOGY — HOMEPAGE
-# ==========================================
-
 def show_homepage():
 
-    # The intro appears when the homepage is loaded or refreshed.
-    # It is visual only: navigation and owner authentication remain unchanged.
+
     st.markdown("""
     <div class="wigology-intro-screen" aria-hidden="true">
       <div class="wigology-intro-inner">
@@ -1381,8 +1328,6 @@ def show_homepage():
     </div>
     """, unsafe_allow_html=True)
 
-    # SECTION 1 — MAIN HOMEPAGE
-    # Centre the content vertically on the first screen
 
     st.markdown('<div class="wigology-hero-start"></div>',
                 unsafe_allow_html=True)
@@ -1428,17 +1373,7 @@ def show_homepage():
         else:
             st.markdown('<div class="wig-profile-photo">HOMEPAGE PHOTOGRAPH</div>', unsafe_allow_html=True)
 
-    
-    # The homepage ends after the hero and three clear navigation options.
-    # Bundles and closures are presented on Shop Now to avoid repetition.
 
-
-# ==========================================
-# CUSTOMER PAGE NAVIGATION
-# ==========================================
-
-# Keep the public page in the URL so a browser refresh returns to it.
-# This does not store or bypass private owner authentication.
 CUSTOMER_PAGE_SLUGS = {
     "Home": "home",
     "Shop Now": "shop",
@@ -1456,7 +1391,7 @@ def navigate_to_customer_page(page):
 
 def show_storefront():
 
-    # The URL survives refreshes, unlike Streamlit's in-memory session state.
+
     url_page = SLUG_TO_CUSTOMER_PAGE.get(st.query_params.get("page", "home"))
     if url_page is not None:
         st.session_state.customer_page = url_page
@@ -1483,10 +1418,6 @@ def show_storefront():
         show_science_library()
 
 
-
-
-
-# Consistent editorial selection tiles for bundle counts, lengths and closures.
 st.markdown("""
 <style>
 [data-testid="stMain"] [class*="st-key-wig_tile_"] button {
@@ -1519,10 +1450,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ==========================================
-# PRIVATE OWNER DASHBOARD
-# ==========================================
-
 def show_owner_dashboard():
     st.markdown("""
     <div class="wigology-dashboard-welcome" style="background:#F3EEE8; padding:2.1rem 1.5rem; text-align:center; margin-bottom:1.8rem;">
@@ -1543,11 +1470,6 @@ def show_owner_dashboard():
         st.info("Inventory, orders and business analytics are coming next.")
 
 
-# ==========================================
-# OWNER LOGIN
-# ==========================================
-
-# The brand is displayed inside the owner access panel after login.
 if not st.session_state.get("owner_logged_in", False):
     st.sidebar.markdown("<div style='font:400 1.7rem Georgia,serif; text-align:center; padding:.6rem 0 1rem;'>The Wigology.</div>", unsafe_allow_html=True)
 
@@ -1630,10 +1552,7 @@ else:
             else:
                 st.error("Incorrect email or password.")
 
-# ==========================================
-# THE WIGOLOGY — CREAM & CHOCOLATE EDITORIAL THEME
-# Presentation only. No changes to app logic.
-# ==========================================
+
 st.markdown("""
 <style>
 :root {
@@ -1644,7 +1563,7 @@ st.markdown("""
  --wig-soft-white:#FFF9F0;
  --wig-line:#CEBEAE;
 }
-/* Keep the original airy, uncluttered page. */
+
 [data-testid="stApp"], [data-testid="stMain"],
 [data-testid="stMainBlockContainer"] { background:#F7F3EB !important; color:#38251F !important; }
 [data-testid="stMain"] h1,[data-testid="stMain"] h2,
@@ -1658,7 +1577,7 @@ st.markdown("""
  color:#755C4C !important;
 }
 .wigology-home-copy::after { background:#755C4C !important; opacity:.7 !important; }
-/* Homepage: brown hero action, quietly outlined secondary actions. */
+
 [data-testid="stMain"] [class*="st-key-homepage_build"] button,
 [data-testid="stMain"] [class*="st-key-homepage_build"] button:hover {
  background:#38251F !important; border:1px solid #38251F !important;
@@ -1684,7 +1603,7 @@ st.markdown("""
 [data-testid="stMain"] [class*="st-key-homepage_shop"] button:not(:hover) * {
  color:#38251F !important; -webkit-text-fill-color:#38251F !important;
 }
-/* Hair origin, texture and closure: ivory tiles with fine chocolate outlines. */
+
 [data-testid="stMain"] [class*="st-key-wig_tile_"] button,
 [data-testid="stMain"] [class*="st-key-shop_tile_"] button {
  background:#F7F3EB !important; color:#38251F !important;
@@ -1708,7 +1627,7 @@ st.markdown("""
  background:#EEE5D8 !important; color:#38251F !important;
  border-color:#735B4D !important;
 }
-/* Bundle and closure quantity steppers: replace dark Streamlit control surfaces. */
+
 [data-testid="stMain"] [data-testid="stNumberInput"] [data-baseweb="input"],
 [data-testid="stMain"] [data-testid="stNumberInput"] [data-baseweb="input"] > div,
 [data-testid="stMain"] [data-testid="stNumberInput"] input {
@@ -1730,7 +1649,7 @@ st.markdown("""
 [data-testid="stMain"] [data-testid="stNumberInput"] button svg * {
  fill:#38251F !important; stroke:#38251F !important; color:#38251F !important;
 }
-/* Bundle length dropdowns: warm ivory with chocolate lettering and arrows. */
+
 [data-testid="stMain"] [data-testid="stSelectbox"] div[data-baseweb="select"],
 [data-testid="stMain"] [data-testid="stSelectbox"] div[data-baseweb="select"] > div,
 [data-testid="stMain"] [data-baseweb="select"] > div {
@@ -1746,7 +1665,7 @@ st.markdown("""
 [data-testid="stMain"] [data-baseweb="select"] svg {
  fill:#38251F !important; color:#38251F !important;
 }
-/* Dropdown popup may be mounted separately from the input. */
+
 body [data-baseweb="popover"] [role="listbox"],
 body [data-baseweb="popover"] [role="option"],
 body [data-baseweb="popover"] [data-baseweb="menu"] {
@@ -1756,7 +1675,7 @@ body [data-baseweb="popover"] [role="option"]:hover,
 body [data-baseweb="popover"] [aria-selected="true"] {
  background:#EEE5D8 !important; color:#38251F !important;
 }
-/* For horizontal length sliders, keep track and thumb in brown. */
+
 [data-testid="stMain"] [data-testid="stSlider"] [role="slider"],
 [data-testid="stMain"] [data-testid="stSelectSlider"] [role="slider"] {
  background:#38251F !important; border-color:#38251F !important;
@@ -1768,7 +1687,7 @@ body [data-baseweb="popover"] [aria-selected="true"] {
 .wig-science-story {background:#F7F3EB !important;}
 .wig-science-links a {color:#624333 !important;}
 .wigology-intro-screen {background:#F7F3EB !important;}
-/* The hero photo's original white backdrop is retained, gently blended into ivory. */
+
 [data-testid="stMain"]:has(.wigology-home-copy) [data-testid="stImage"] img {
  mix-blend-mode:multiply;
 }
@@ -1776,13 +1695,9 @@ body [data-baseweb="popover"] [aria-selected="true"] {
 """,unsafe_allow_html=True)
 
 
-# ==========================================
-# FINAL DROPDOWN FIX — STREAMLIT SELECTBOX INNER ELEMENTS
-# ==========================================
 st.markdown("""
 <style>
-/* Streamlit paints the *inner* combobox dark in some versions.
-   Previous rules targeted only its outer shell. */
+
 [data-testid="stMain"] [data-testid="stSelectbox"] [data-baseweb="select"],
 [data-testid="stMain"] [data-testid="stSelectbox"] [data-baseweb="select"] > div,
 [data-testid="stMain"] [data-testid="stSelectbox"] [data-baseweb="select"] div,
@@ -1810,7 +1725,7 @@ st.markdown("""
   stroke: #38251F !important;
   -webkit-text-fill-color: #38251F !important;
 }
-/* Also cover the newer BaseWeb/Streamlit selectable input implementation. */
+
 [data-testid="stMain"] [data-testid="stSelectbox"] [data-baseweb="input"],
 [data-testid="stMain"] [data-testid="stSelectbox"] [data-baseweb="input"] div,
 [data-testid="stMain"] [data-testid="stSelectbox"] [data-baseweb="input"] input {
@@ -1818,7 +1733,7 @@ st.markdown("""
   color: #38251F !important;
   -webkit-text-fill-color: #38251F !important;
 }
-/* Popup menus */
+
 [data-baseweb="popover"] [role="listbox"],
 [data-baseweb="popover"] [role="option"],
 [data-baseweb="popover"] [data-baseweb="menu"] {

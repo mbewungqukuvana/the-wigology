@@ -48,7 +48,7 @@ def zar(value):
 def show_pricing_studio():
     st.markdown("""
     <style>
-    /* White luxury controls and taupe margin slider */
+
     [data-testid="stMain"] [data-testid="stSelectbox"] [data-baseweb="select"] > div,
     [data-testid="stMain"] [data-testid="stNumberInput"] [data-baseweb="input"],
     [data-testid="stMain"] [data-testid="stNumberInput"] input {
@@ -103,10 +103,10 @@ def show_pricing_studio():
     .pricing-metric .value {font:400 clamp(1.3rem,2.4vw,2rem) Georgia,serif;
       color:#201C18; margin-top:.65rem; white-space:nowrap;}
     .pricing-note {font-size:.84rem; color:#75695F; text-align:center; line-height:1.7;}
-    /* Improve widget spacing only within the owner pricing content */
+
     [data-testid="stMain"] [data-testid="stNumberInput"],
     [data-testid="stMain"] [data-testid="stSelectbox"] {margin-bottom:.65rem;}
-    
+
     .pricing-hero {background:#F3EEE8; padding:2.6rem 1.2rem; text-align:center; margin-bottom:2rem;}
     .pricing-hero .eyebrow {font-size:.75rem; letter-spacing:.18em;}
     .pricing-hero h1 {font-family:Georgia,serif; font-size:clamp(2rem,4vw,3.3rem)!important; margin:.6rem 0;}
@@ -144,7 +144,7 @@ def show_pricing_studio():
     origin = tiles("01 — SELECT YOUR HAIR ORIGIN", ["Indian", "Filipino"], "pricing_origin", "origin")
     texture = tiles("02 — SELECT YOUR HAIR TEXTURE", ["Straight", "Wavy"], "pricing_texture", "texture")
     if origin == "Indian":
-        # Supplier lists straight and wavy together at the same price.
+
         bundle_prices = {length: options["Straight / Wavy"] for length, options in INDIAN_BUNDLES.items()}
         closure_prices = INDIAN_CLOSURES
     else:
@@ -202,7 +202,7 @@ def show_pricing_studio():
         packaging = st.number_input("Packaging per wig (R)", min_value=0.0, value=0.0, step=10.0)
         other = st.number_input("Other costs per wig (R)", min_value=0.0, value=0.0, step=10.0)
 
-    # Profit target sits in its own centered section, not inside either cost column.
+
     st.markdown('<div class="profit-target-divider"></div>', unsafe_allow_html=True)
     st.markdown('<div class="profit-target-heading">PROFIT TARGET</div>', unsafe_allow_html=True)
     st.markdown('<div class="profit-target-subheading">Target gross margin</div>', unsafe_allow_html=True)
@@ -271,5 +271,3 @@ def show_pricing_studio():
     with c4: metric_card("60% CUSTOMER DEPOSIT", deposit)
     with c5: metric_card("40% BALANCE BEFORE DELIVERY", balance)
     st.markdown('<div style="height:1.2rem"></div>', unsafe_allow_html=True)
-    # The customer deposit and balance are shown above.
-    # Funding coverage and the explanatory footer are intentionally not displayed.
