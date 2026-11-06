@@ -2,6 +2,10 @@
 import streamlit as st
 import bcrypt
 import hmac
+import time
+
+# Performance diagnostics: each Streamlit interaction reruns this script.
+_WIGOLOGY_RUN_STARTED = time.perf_counter()
 
 
 st.set_page_config(
@@ -1388,6 +1392,7 @@ def navigate_to_customer_page(page):
 
 
 def show_storefront():
+    _page_started = time.perf_counter()
     # Do not rewrite query parameters on every click: that can cause
     # additional browser URL updates and extra page work on hosted Streamlit.
     if "customer_page" not in st.session_state:
@@ -1416,6 +1421,11 @@ def show_storefront():
             show_wig_builder()
         elif page == "The Science of Hair":
             show_science_library()
+    print(
+        f"[Wigology performance] customer_page={page!r} "
+        f"page_render_seconds={time.perf_counter() - _page_started:.3f}",
+        flush=True,
+    )
 
 
 st.markdown("""
@@ -1755,3 +1765,10 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
+
+# Check Render > Logs after clicking between pages. This does not show on the site.
+print(
+    f"[Wigology performance] full_script_seconds={time.perf_counter() - _WIGOLOGY_RUN_STARTED:.3f}",
+    flush=True,
+)
