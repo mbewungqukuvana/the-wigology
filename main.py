@@ -1354,6 +1354,17 @@ def show_homepage():
 
     with image_col:
         if Path("images/homepage_wig.png").is_file():
+            # The image must itself have transparency; CSS cannot remove white pixels.
+            st.markdown(
+                """<style>
+                [data-testid="stImage"],
+                [data-testid="stImage"] img {
+                    background: transparent !important;
+                    mix-blend-mode: normal !important;
+                }
+                </style>""",
+                unsafe_allow_html=True,
+            )
             st.image("images/homepage_wig.png", use_container_width=True)
         else:
             st.markdown('<div class="wig-profile-photo">HOMEPAGE PHOTOGRAPH</div>', unsafe_allow_html=True)
