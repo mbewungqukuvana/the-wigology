@@ -596,6 +596,12 @@ WIG_VIEW_IMAGES = {
 }
 
 
+@st.cache_data(show_spinner=False, max_entries=24)
+def _wig_view_image_data(path_string, modified_ns):
+    """Cache the encoded image; modified_ns invalidates cache on file changes."""
+    return "data:image/jpeg;base64," + base64.b64encode(Path(path_string).read_bytes()).decode("ascii")
+
+
 def show_wig_angle_viewer(name):
     """Drag/swipe a three-photo wig viewer. This is not a true 3D model."""
     filenames = WIG_VIEW_IMAGES.get(name)
@@ -604,7 +610,7 @@ def show_wig_angle_viewer(name):
     paths = [Path(__file__).resolve().parent / "images" / file for file in filenames]
     if not all(path.is_file() for path in paths):
         return False
-    images = ["data:image/jpeg;base64," + base64.b64encode(path.read_bytes()).decode("ascii") for path in paths]
+    images = [_wig_view_image_data(str(path), path.stat().st_mtime_ns) for path in paths]
 
     html = r'''<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -809,13 +815,18 @@ RESEARCH = [
 ]
 
 
+@st.cache_data(show_spinner=False, max_entries=4)
+def _science_pattern_data(path_string, modified_ns):
+    return "data:image/jpeg;base64," + base64.b64encode(Path(path_string).read_bytes()).decode("ascii")
+
+
 def show_science_library():
 
     from pathlib import Path
     import base64
     pattern_file = Path(__file__).resolve().parent / "images" / "burgundy_pattern.jpg"
     if pattern_file.exists():
-        pattern_url = "data:image/jpeg;base64," + base64.b64encode(pattern_file.read_bytes()).decode("ascii")
+        pattern_url = _science_pattern_data(str(pattern_file), pattern_file.stat().st_mtime_ns)
     else:
         st.warning("Science background image missing: place burgundy_pattern.jpg inside the images folder beside main.py.")
         pattern_url = ""
@@ -1317,23 +1328,29 @@ def show_homepage():
 
         st.write("")
 
-        if st.button(
+        st.button(
             "BUILD YOUR DREAM WIG",
             use_container_width=True,
-            key="homepage_build"
-        ):
-            navigate_to_customer_page("Build Your Dream Wig")
+            key="homepage_build",
+            on_click=navigate_to_customer_page,
+            args=("Build Your Dream Wig",),
+        )
 
-        if st.button("EXPLORE THE SCIENCE OF HAIR", use_container_width=True, key="homepage_science"):
-            navigate_to_customer_page("The Science of Hair")
+        st.button(
+            "EXPLORE THE SCIENCE OF HAIR",
+            use_container_width=True,
+            key="homepage_science",
+            on_click=navigate_to_customer_page,
+            args=("The Science of Hair",),
+        )
 
-        if st.button(
+        st.button(
             "SHOP NOW",
             use_container_width=True,
-            key="homepage_shop"
-        ):
-            st.session_state.shop_step = "Choose"
-            navigate_to_customer_page("Shop Now")
+            key="homepage_shop",
+            on_click=navigate_to_customer_page,
+            args=("Shop Now",),
+        )
 
     with image_col:
         if Path("images/homepage_wig.png").is_file():
@@ -1352,9 +1369,13 @@ SLUG_TO_CUSTOMER_PAGE = {slug: name for name, slug in CUSTOMER_PAGE_SLUGS.items(
 
 
 def navigate_to_customer_page(page):
+    """Update the destination before Streamlit's automatic widget rerun."""
     st.session_state.customer_page = page
-    st.query_params["page"] = CUSTOMER_PAGE_SLUGS[page]
-    st.rerun()
+    if page in ("Home", "Shop Now"):
+        st.session_state.shop_step = "Choose"
+    slug = CUSTOMER_PAGE_SLUGS[page]
+    if st.query_params.get("page") != slug:
+        st.query_params["page"] = slug
 
 
 def show_storefront():
@@ -1369,9 +1390,11 @@ def show_storefront():
     page = st.session_state.customer_page
 
     if page != "Home":
-        if st.button("← Back to Home"):
-            st.session_state.shop_step = "Choose"
-            navigate_to_customer_page("Home")
+        st.button(
+            "← Back to Home",
+            on_click=navigate_to_customer_page,
+            args=("Home",),
+        )
 
     if page == "Home":
         show_homepage()
@@ -1657,8 +1680,15 @@ body [data-baseweb="popover"] [aria-selected="true"] {
 .wig-science-story {background:#F7F3EB !important;}
 .wig-science-links a {color:#624333 !important;}
 
+[data-testid="stMain"]:has(.wigology-home-copy) [data-testid="stImage"],
+[data-testid="stMain"]:has(.wigology-home-copy) [data-testid="stImage"] > div,
+[data-testid="stMain"]:has(.wigology-home-copy) [data-testid="stImage"] picture {
+ background: transparent !important;
+}
 [data-testid="stMain"]:has(.wigology-home-copy) [data-testid="stImage"] img {
- mix-blend-mode:multiply;
+ display: block !important;
+ mix-blend-mode: multiply !important;
+ background: transparent !important;
 }
 </style>
 """,unsafe_allow_html=True)
