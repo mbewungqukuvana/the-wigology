@@ -1369,44 +1369,41 @@ SLUG_TO_CUSTOMER_PAGE = {slug: name for name, slug in CUSTOMER_PAGE_SLUGS.items(
 
 
 def navigate_to_customer_page(page):
-    """Update the destination before Streamlit's automatic widget rerun."""
+    """Switch customer views with one Streamlit widget-triggered rerun."""
     st.session_state.customer_page = page
     if page in ("Home", "Shop Now"):
         st.session_state.shop_step = "Choose"
-    slug = CUSTOMER_PAGE_SLUGS[page]
-    if st.query_params.get("page") != slug:
-        st.query_params["page"] = slug
 
 
 def show_storefront():
-
-
-    url_page = SLUG_TO_CUSTOMER_PAGE.get(st.query_params.get("page", "home"))
-    if url_page is not None:
-        st.session_state.customer_page = url_page
-    elif "customer_page" not in st.session_state:
-        st.session_state.customer_page = "Home"
+    # Do not rewrite query parameters on every click: that can cause
+    # additional browser URL updates and extra page work on hosted Streamlit.
+    if "customer_page" not in st.session_state:
+        requested_page = SLUG_TO_CUSTOMER_PAGE.get(st.query_params.get("page", "home"))
+        st.session_state.customer_page = requested_page or "Home"
 
     page = st.session_state.customer_page
 
-    if page != "Home":
-        st.button(
-            "← Back to Home",
-            on_click=navigate_to_customer_page,
-            args=("Home",),
-        )
+    # A single placeholder owns the customer view so Streamlit can replace
+    # its contents as one block when the destination view is ready.
+    customer_view = st.empty()
+    with customer_view.container():
+        if page != "Home":
+            st.button(
+                "← Back to Home",
+                on_click=navigate_to_customer_page,
+                args=("Home",),
+                key="customer_back_home",
+            )
 
-    if page == "Home":
-        show_homepage()
-
-    elif page == "Shop Now":
-        show_individual_hair_shop()
-
-    elif page == "Build Your Dream Wig":
-        show_wig_builder()
-
-    elif page == "The Science of Hair":
-        show_science_library()
+        if page == "Home":
+            show_homepage()
+        elif page == "Shop Now":
+            show_individual_hair_shop()
+        elif page == "Build Your Dream Wig":
+            show_wig_builder()
+        elif page == "The Science of Hair":
+            show_science_library()
 
 
 st.markdown("""
